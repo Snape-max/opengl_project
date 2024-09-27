@@ -19,11 +19,25 @@ typedef struct
 
 
 Color3F ColorI2F(Color3I color3i);
-void set_pen_color(Color3I color3i);
-void set_clear_color(Color3I color3i);
-void set_pixel(float x, float y);
-void draw_line(float x0, float y0, float xEnd, float yEnd);
-void draw_circle(int xc, int yc, int radius);
-void RenderString(float x, float y, const unsigned char *str, Color3I color);
+
+
+class DrawTools {
+    public:
+        DrawTools();
+        void set_pen_color(Color3I color3i);
+        void set_pen_width(float width);
+        void set_clear_color(Color3I color3i);
+        void set_pixel(float x, float y);
+        void draw_line(float x1, float y1, float x2, float y2);
+        void draw_circle(float xc, float yc, float radius, int mode);
+        void draw_rect(float x, float y, float w, float h, int mode);
+        void fill_rect(float x, float y, float w, float h, Color3I color);
+        void fill_circle(float xc, float yc, float radius, Color3I color);
+        void RenderString(float x, float y, const unsigned char *str, Color3I color);
+        void enable_smoothing();
+    private:
+        Color3I pen_color;
+        float pen_width;
+};
 
 #endif
